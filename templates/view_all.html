@@ -1,0 +1,46 @@
+<!-- templates/view_all.html -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>All Books</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body class="bg-light">
+    <div class="container py-5">
+      <a href="{{ url_for('index') }}" class="btn btn-link mb-3">← Back</a>
+      <div class="card mx-auto shadow-sm" style="max-width:900px;">
+        <div class="card-body">
+          <h3 class="card-title mb-3">All Books (sorted by Book ID)</h3>
+          {% if books %}
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Book ID</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for b in books %}
+                    <tr>
+                      <td>{{ b.id }}</td>
+                      <td>{{ b.title }}</td>
+                      <td>{{ b.author }}</td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          {% else %}
+            <p class="text-muted">No books available.</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
